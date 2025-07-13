@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Panduan Kursus BAK3133</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f7fb;
+      color: #333;
+    }
+
+    header {
+      background-color: #005fa3;
+      color: white;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    main {
+      padding: 2rem;
+      max-width: 960px;
+      margin: auto;
+    }
+
+    section {
+      background: white;
+      margin-bottom: 1.5rem;
+      padding: 1.5rem;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      color: #005fa3;
+      margin-top: 0;
+    }
+
+    button {
+      background-color: #005fa3;
+      color: white;
+      border: none;
+      padding: 0.7rem 1.2rem;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 1rem;
+    }
+
+    button:hover {
+      background-color: #00447a;
+    }
+
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Panduan Kursus: BAK3133</h1>
+    <p><em>Pengajian Bahasa Arab al-Quran</em></p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Maklumat Kursus</h2>
+      <p><strong>Program:</strong> ISM Bahasa Arab untuk Tujuan Khusus</p>
+      <p><strong>Kod:</strong> BAK3133</p>
+      <p><strong>Kredit:</strong> 3 JK</p>
+      <p><strong>Pensyarah:</strong> Rohaidi bin Habil</p>
+    </section>
+
+    <section>
+      <h2 onclick="toggle('sinopsis')">Sinopsis Kursus</h2>
+      <div id="sinopsis" class="hidden">
+        <p>Kursus ini mendedahkan kepada pelajar kajian kosa kata, nahu, sarf dan balaghah dalam surah-surah terpilih dari juzuk ‘Amma. Ia bertujuan memahirkan pelajar dengan aplikasi digital dan mendorong pembelajaran sepanjang hayat.</p>
+      </div>
+    </section>
+
+    <section>
+      <h2 onclick="toggle('clo')">Hasil Pembelajaran Kursus (CLO)</h2>
+      <div id="clo" class="hidden">
+        <ul>
+          <li><strong>CLO 1:</strong> Menjelaskan kajian bahasa dalam surah-surah pilihan.</li>
+          <li><strong>CLO 2:</strong> Menggunakan kajian bahasa dalam tugasan digital.</li>
+          <li><strong>CLO 3:</strong> Menunjukkan keupayaan menyelesaikan tugasan kajian bahasa Arab al-Quran.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <h2 onclick="toggle('slt')">Jam Pembelajaran Pelajar (SLT)</h2>
+      <div id="slt" class="hidden">
+        <p><strong>Total SLT:</strong> 132 Jam</p>
+        <ul>
+          <li>Kuliah: 14 jam</li>
+          <li>Tutorial/Amali: 28 jam</li>
+          <li>Tugasan & Ulangkaji: 83 jam</li>
+          <li>Penilaian Rasmi: 7 jam</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <h2 onclick="toggle('penilaian')">Strategi Penilaian</h2>
+      <div id="penilaian" class="hidden">
+        <p><strong>Penilaian Berterusan:</strong> 60% (Kuiz, Pembentangan, Tugasan)</p>
+        <p><strong>Penilaian Akhir:</strong> 40% (Peperiksaan Akhir)</p>
+      </div>
+    </section>
+
+    <section>
+      <h2 onclick="toggle('rujukan')">Rujukan Utama</h2>
+      <div id="rujukan" class="hidden">
+        <ul>
+          <li>Ahmad Basam Sa'i (2012) - Al-Mu’kizat</li>
+          <li>Ahmad Mokhtar Omar (2006) - Dirasat Lughawiyyat</li>
+          <li>Salah Abdul Fattah Alkhaldi (2007) - Taif Koran</li>
+          <li><a href="https://tafsir.app" target="_blank">https://tafsir.app</a></li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    function toggle(id) {
+      const section = document.getElementById(id);
+      section.classList.toggle("hidden");
+    }
+  </script>
+</body>
+</html>
