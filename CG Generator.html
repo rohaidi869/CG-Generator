@@ -3,133 +3,610 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Panduan Kursus BAK3133</title>
+  <title>Penjana Garis Panduan Kursus BAK3133</title>
   <style>
-    body {
-      font-family: 'Segoe UI', sans-serif;
+    :root {
+      --primary: #005fa3;
+      --primary-dark: #00447a;
+      --secondary: #f4f7fb;
+      --accent: #e74c3c;
+      --text: #333;
+      --light: #fff;
+    }
+    
+    * {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
-      background-color: #f4f7fb;
-      color: #333;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: var(--secondary);
+      color: var(--text);
+      line-height: 1.6;
     }
 
     header {
-      background-color: #005fa3;
-      color: white;
-      padding: 2rem;
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: var(--light);
+      padding: 2rem 1rem;
       text-align: center;
+      position: relative;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .header-content {
+      max-width: 960px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .course-code {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: rgba(255, 255, 255, 0.2);
+      padding: 5px 15px;
+      border-radius: 20px;
+      font-weight: bold;
     }
 
     main {
-      padding: 2rem;
+      padding: 2rem 1rem;
       max-width: 960px;
       margin: auto;
     }
 
+    .controls {
+      display: flex;
+      gap: 15px;
+      margin-bottom: 30px;
+      flex-wrap: wrap;
+    }
+
+    .controls button {
+      flex: 1;
+      min-width: 200px;
+    }
+
     section {
-      background: white;
+      background: var(--light);
       margin-bottom: 1.5rem;
       padding: 1.5rem;
       border-radius: 10px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+      transition: transform 0.3s, box-shadow 0.3s;
+      border-left: 4px solid var(--primary);
+    }
+
+    section:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      margin-bottom: 0.5rem;
+      font-size: 2.2rem;
     }
 
     h2 {
-      color: #005fa3;
+      color: var(--primary);
       margin-top: 0;
+      padding-bottom: 10px;
+      border-bottom: 2px solid #f0f0f0;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    h2 .toggle-icon {
+      font-size: 1.2rem;
+      transition: transform 0.3s ease;
+    }
+
+    h2.active .toggle-icon {
+      transform: rotate(180deg);
+    }
+
+    .subtitle {
+      font-style: italic;
+      font-size: 1.1rem;
+      opacity: 0.9;
     }
 
     button {
-      background-color: #005fa3;
-      color: white;
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: var(--light);
       border: none;
-      padding: 0.7rem 1.2rem;
+      padding: 0.8rem 1.5rem;
       border-radius: 5px;
       cursor: pointer;
       margin-top: 1rem;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
 
     button:hover {
-      background-color: #00447a;
+      background: linear-gradient(135deg, var(--primary-dark), #00325e);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+      transform: translateY(-2px);
+    }
+
+    button:active {
+      transform: translateY(1px);
     }
 
     .hidden {
       display: none;
     }
+
+    .collapsed-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease;
+    }
+
+    .expanded {
+      max-height: 1000px;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 15px;
+      margin-top: 15px;
+    }
+
+    .info-card {
+      background: #f9f9f9;
+      padding: 15px;
+      border-radius: 8px;
+      border-left: 3px solid var(--primary);
+    }
+
+    .info-card h3 {
+      color: var(--primary);
+      margin-bottom: 8px;
+      font-size: 1.1rem;
+    }
+
+    .generator {
+      background: var(--light);
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+      margin-top: 2rem;
+    }
+
+    .generator h2 {
+      border-bottom: none;
+    }
+
+    .generator-controls {
+      display: flex;
+      gap: 15px;
+      margin: 20px 0;
+      flex-wrap: wrap;
+    }
+
+    .generator-controls input,
+    .generator-controls select {
+      flex: 1;
+      min-width: 200px;
+      padding: 10px 15px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 1rem;
+    }
+
+    .generator-result {
+      background: #f8f9fa;
+      border: 1px dashed #ccc;
+      border-radius: 5px;
+      padding: 20px;
+      margin-top: 20px;
+      min-height: 150px;
+      font-family: monospace;
+      white-space: pre-wrap;
+    }
+
+    .print-btn {
+      background: linear-gradient(135deg, #27ae60, #219653);
+      margin-top: 15px;
+      width: 100%;
+      justify-content: center;
+    }
+
+    .reference-link {
+      color: var(--primary);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .reference-link:hover {
+      text-decoration: underline;
+    }
+
+    .slt-chart {
+      display: flex;
+      height: 40px;
+      margin: 15px 0;
+      border-radius: 5px;
+      overflow: hidden;
+    }
+
+    .slt-item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: bold;
+      font-size: 0.8rem;
+      text-align: center;
+    }
+
+    footer {
+      background: var(--primary);
+      color: var(--light);
+      text-align: center;
+      padding: 1.5rem;
+      margin-top: 2rem;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 768px) {
+      .info-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .controls {
+        flex-direction: column;
+      }
+      
+      .controls button {
+        width: 100%;
+      }
+      
+      h1 {
+        font-size: 1.8rem;
+      }
+    }
   </style>
 </head>
 <body>
   <header>
-    <h1>Panduan Kursus: BAK3133</h1>
-    <p><em>Pengajian Bahasa Arab al-Quran</em></p>
+    <div class="header-content">
+      <div class="course-code">BAK3133</div>
+      <h1>Penjana Garis Panduan Kursus</h1>
+      <p class="subtitle">Pengajian Bahasa Arab al-Quran</p>
+    </div>
   </header>
 
   <main>
-    <section>
-      <h2>Maklumat Kursus</h2>
-      <p><strong>Program:</strong> ISM Bahasa Arab untuk Tujuan Khusus</p>
-      <p><strong>Kod:</strong> BAK3133</p>
-      <p><strong>Kredit:</strong> 3 JK</p>
-      <p><strong>Pensyarah:</strong> Rohaidi bin Habil</p>
-    </section>
+    <div class="controls">
+      <button onclick="expandAll()">
+        <span>Kembangkan Semua</span>
+        <span class="toggle-icon">▼</span>
+      </button>
+      <button onclick="collapseAll()">
+        <span>Tutup Semua</span>
+        <span class="toggle-icon">▲</span>
+      </button>
+      <button onclick="window.print()">
+        <span>Cetak Panduan</span>
+        <span>🖨️</span>
+      </button>
+    </div>
 
     <section>
-      <h2 onclick="toggle('sinopsis')">Sinopsis Kursus</h2>
-      <div id="sinopsis" class="hidden">
-        <p>Kursus ini mendedahkan kepada pelajar kajian kosa kata, nahu, sarf dan balaghah dalam surah-surah terpilih dari juzuk ‘Amma. Ia bertujuan memahirkan pelajar dengan aplikasi digital dan mendorong pembelajaran sepanjang hayat.</p>
+      <h2 onclick="toggleSection('maklumat')">
+        Maklumat Kursus
+        <span class="toggle-icon">▼</span>
+      </h2>
+      <div id="maklumat" class="collapsed-content">
+        <div class="info-grid">
+          <div class="info-card">
+            <h3>Program</h3>
+            <p>ISM Bahasa Arab untuk Tujuan Khusus</p>
+          </div>
+          <div class="info-card">
+            <h3>Kod Kursus</h3>
+            <p>BAK3133</p>
+          </div>
+          <div class="info-card">
+            <h3>Kredit</h3>
+            <p>3 Jam Kredit</p>
+          </div>
+          <div class="info-card">
+            <h3>Pensyarah</h3>
+            <p>Rohaidi bin Habil</p>
+          </div>
+        </div>
       </div>
     </section>
 
     <section>
-      <h2 onclick="toggle('clo')">Hasil Pembelajaran Kursus (CLO)</h2>
-      <div id="clo" class="hidden">
+      <h2 onclick="toggleSection('sinopsis')">
+        Sinopsis Kursus
+        <span class="toggle-icon">▼</span>
+      </h2>
+      <div id="sinopsis" class="collapsed-content">
+        <p>Kursus ini mendedahkan pelajar kepada kajian kosa kata, nahu, sarf dan balaghah dalam surah-surah terpilih dari juzuk 'Amma. Kursus ini bertujuan untuk memahirkan pelajar dengan aplikasi digital dalam pembelajaran bahasa Arab al-Quran serta mendorong pembelajaran sepanjang hayat melalui pendekatan interaktif dan kolaboratif.</p>
+        <p>Melalui kursus ini, pelajar akan dapat menganalisis struktur bahasa dalam ayat-ayat al-Quran dan mengaplikasikan pengetahuan tersebut dalam konteks moden, khususnya dalam bidang teknologi digital yang relevan dengan pengajian Islam kontemporari.</p>
+      </div>
+    </section>
+
+    <section>
+      <h2 onclick="toggleSection('clo')">
+        Hasil Pembelajaran Kursus (CLO)
+        <span class="toggle-icon">▼</span>
+      </h2>
+      <div id="clo" class="collapsed-content">
+        <div class="info-grid">
+          <div class="info-card">
+            <h3>CLO 1</h3>
+            <p>Menjelaskan kajian kosa kata, nahu, sarf dan balaghah dalam surah-surah pilihan dari juzuk 'Amma dengan tepat dan terperinci.</p>
+          </div>
+          <div class="info-card">
+            <h3>CLO 2</h3>
+            <p>Menggunakan pengetahuan bahasa Arab al-Quran dalam menghasilkan tugasan digital yang inovatif dan kreatif.</p>
+          </div>
+          <div class="info-card">
+            <h3>CLO 3</h3>
+            <p>Menunjukkan keupayaan menyelesaikan tugasan kajian bahasa Arab al-Quran secara individu dan berkumpulan dengan berkesan.</p>
+          </div>
+          <div class="info-card">
+            <h3>CLO 4</h3>
+            <p>Mengaplikasikan teknik analisis bahasa Arab al-Quran dalam konteks semasa dan perkembangan teknologi digital.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2 onclick="toggleSection('slt')">
+        Jam Pembelajaran Pelajar (SLT)
+        <span class="toggle-icon">▼</span>
+      </h2>
+      <div id="slt" class="collapsed-content">
+        <p><strong>Total SLT:</strong> 132 Jam (3 Jam Kredit × 44 Minggu)</p>
+        
+        <div class="slt-chart">
+          <div class="slt-item" style="background-color: #3498db; width: 10.6%;">Kuliah<br>14 jam</div>
+          <div class="slt-item" style="background-color: #2ecc71; width: 21.2%;">Tutorial/Amali<br>28 jam</div>
+          <div class="slt-item" style="background-color: #9b59b6; width: 62.9%;">Tugasan & Ulangkaji<br>83 jam</div>
+          <div class="slt-item" style="background-color: #e74c3c; width: 5.3%;">Penilaian<br>7 jam</div>
+        </div>
+        
         <ul>
-          <li><strong>CLO 1:</strong> Menjelaskan kajian bahasa dalam surah-surah pilihan.</li>
-          <li><strong>CLO 2:</strong> Menggunakan kajian bahasa dalam tugasan digital.</li>
-          <li><strong>CLO 3:</strong> Menunjukkan keupayaan menyelesaikan tugasan kajian bahasa Arab al-Quran.</li>
+          <li><strong>Kuliah:</strong> 14 jam (1 jam/minggu × 14 minggu)</li>
+          <li><strong>Tutorial/Amali:</strong> 28 jam (2 jam/minggu × 14 minggu)</li>
+          <li><strong>Tugasan & Ulangkaji:</strong> 83 jam (6 jam/minggu)</li>
+          <li><strong>Penilaian Rasmi:</strong> 7 jam (Ujian Pertengahan: 2 jam, Peperiksaan Akhir: 3 jam, Pembentangan: 2 jam)</li>
         </ul>
       </div>
     </section>
 
     <section>
-      <h2 onclick="toggle('slt')">Jam Pembelajaran Pelajar (SLT)</h2>
-      <div id="slt" class="hidden">
-        <p><strong>Total SLT:</strong> 132 Jam</p>
-        <ul>
-          <li>Kuliah: 14 jam</li>
-          <li>Tutorial/Amali: 28 jam</li>
-          <li>Tugasan & Ulangkaji: 83 jam</li>
-          <li>Penilaian Rasmi: 7 jam</li>
-        </ul>
+      <h2 onclick="toggleSection('penilaian')">
+        Strategi Penilaian
+        <span class="toggle-icon">▼</span>
+      </h2>
+      <div id="penilaian" class="collapsed-content">
+        <div class="info-grid">
+          <div class="info-card">
+            <h3>Penilaian Berterusan (60%)</h3>
+            <ul>
+              <li>Kuiz (10%)</li>
+              <li>Pembentangan (20%)</li>
+              <li>Tugasan Individu (15%)</li>
+              <li>Tugasan Berkumpulan (15%)</li>
+            </ul>
+          </div>
+          <div class="info-card">
+            <h3>Penilaian Akhir (40%)</h3>
+            <ul>
+              <li>Peperiksaan Akhir (40%)</li>
+            </ul>
+          </div>
+          <div class="info-card">
+            <h3>Kriteria Penilaian</h3>
+            <ul>
+              <li>Ketepatan analisis (40%)</li>
+              <li>Kreativiti penyelesaian (30%)</li>
+              <li>Kemahiran digital (20%)</li>
+              <li>Kerjasama kumpulan (10%)</li>
+            </ul>
+          </div>
+        </div>
       </div>
     </section>
 
     <section>
-      <h2 onclick="toggle('penilaian')">Strategi Penilaian</h2>
-      <div id="penilaian" class="hidden">
-        <p><strong>Penilaian Berterusan:</strong> 60% (Kuiz, Pembentangan, Tugasan)</p>
-        <p><strong>Penilaian Akhir:</strong> 40% (Peperiksaan Akhir)</p>
+      <h2 onclick="toggleSection('rujukan')">
+        Rujukan Utama
+        <span class="toggle-icon">▼</span>
+      </h2>
+      <div id="rujukan" class="collapsed-content">
+        <div class="info-grid">
+          <div class="info-card">
+            <h3>Buku Teks</h3>
+            <ul>
+              <li>Ahmad Basam Sa'i (2012) - Al-Mu'kizat fi Balaghat al-Quran</li>
+              <li>Ahmad Mokhtar Omar (2006) - Dirasat Lughawiyyat fi al-Quran al-Karim</li>
+              <li>Salah Abdul Fattah Alkhaldi (2007) - Taif Koran: Dirasa Lughawiyya Balaghiyya</li>
+            </ul>
+          </div>
+          <div class="info-card">
+            <h3>Rujukan Tambahan</h3>
+            <ul>
+              <li>Abdul Fattah Lasyin (2010) - Al-Balagha al-Quran fi Tafsir al-Zamakhsyari</li>
+              <li>Muhammad Abduh (1999) - Tafsir al-Manar</li>
+            </ul>
+          </div>
+          <div class="info-card">
+            <h3>Sumber Digital</h3>
+            <ul>
+              <li><a href="https://tafsir.app" class="reference-link" target="_blank">🌐 Tafsir App</a></li>
+              <li><a href="https://corpus.quran.com" class="reference-link" target="_blank">🌐 Quranic Arabic Corpus</a></li>
+              <li><a href="https://lughatuna.com" class="reference-link" target="_blank">🌐 Portal Bahasa Arab</a></li>
+            </ul>
+          </div>
+        </div>
       </div>
     </section>
 
-    <section>
-      <h2 onclick="toggle('rujukan')">Rujukan Utama</h2>
-      <div id="rujukan" class="hidden">
-        <ul>
-          <li>Ahmad Basam Sa'i (2012) - Al-Mu’kizat</li>
-          <li>Ahmad Mokhtar Omar (2006) - Dirasat Lughawiyyat</li>
-          <li>Salah Abdul Fattah Alkhaldi (2007) - Taif Koran</li>
-          <li><a href="https://tafsir.app" target="_blank">https://tafsir.app</a></li>
-        </ul>
+    <section class="generator">
+      <h2>Penjana Garis Panduan Kursus</h2>
+      <p>Hasilkan garis panduan kursus khusus berdasarkan keperluan anda:</p>
+      
+      <div class="generator-controls">
+        <input type="text" id="courseName" placeholder="Nama Kursus" value="BAK3133 - Pengajian Bahasa Arab al-Quran">
+        <input type="text" id="lecturerName" placeholder="Nama Pensyarah" value="Rohaidi bin Habil">
+        <select id="semester">
+          <option value="1">Semester 1</option>
+          <option value="2" selected>Semester 2</option>
+          <option value="3">Semester 3</option>
+        </select>
       </div>
+      
+      <button onclick="generateGuideline()">Hasilkan Garis Panduan</button>
+      
+      <div class="generator-result" id="generatorResult">
+        Hasil garis panduan akan muncul di sini...
+      </div>
+      
+      <button class="print-btn" onclick="printGuideline()">Cetak Garis Panduan</button>
     </section>
   </main>
 
+  <footer>
+    <p>Pusat Pengajian Bahasa Arab al-Quran | Universiti Islam Malaysia</p>
+    <p>© 2023 Panduan Kursus BAK3133. Hak Cipta Terpelihara.</p>
+  </footer>
+
   <script>
-    function toggle(id) {
-      const section = document.getElementById(id);
-      section.classList.toggle("hidden");
+    // Fungsi untuk toggle section
+    function toggleSection(id) {
+      const content = document.getElementById(id);
+      const header = content.previousElementSibling;
+      
+      content.classList.toggle('expanded');
+      header.classList.toggle('active');
     }
+    
+    // Fungsi untuk mengembangkan semua section
+    function expandAll() {
+      document.querySelectorAll('.collapsed-content').forEach(content => {
+        content.classList.add('expanded');
+        content.previousElementSibling.classList.add('active');
+      });
+    }
+    
+    // Fungsi untuk menutup semua section
+    function collapseAll() {
+      document.querySelectorAll('.collapsed-content').forEach(content => {
+        content.classList.remove('expanded');
+        content.previousElementSibling.classList.remove('active');
+      });
+    }
+    
+    // Fungsi untuk menghasilkan garis panduan
+    function generateGuideline() {
+      const courseName = document.getElementById('courseName').value;
+      const lecturerName = document.getElementById('lecturerName').value;
+      const semester = document.getElementById('semester').value;
+      
+      const result = `
+GARIS PANDUAN KURSUS
+
+Kursus: ${courseName}
+Pensyarah: ${lecturerName}
+Semester: ${semester}
+
+1. OBJEKTIF KURSUS
+   - Menganalisis struktur bahasa Arab dalam surah-surah terpilih
+   - Mengaplikasikan pengetahuan bahasa Arab al-Quran dalam penyelesaian masalah
+   - Membangunkan bahan digital untuk pembelajaran bahasa Arab al-Quran
+
+2. KAEDAH PENGAJARAN
+   - Kuliah interaktif (2 jam/minggu)
+   - Tutorial praktikal (2 jam/minggu)
+   - Pembelajaran berasaskan projek
+   - Pembentangan kumpulan
+
+3. JADUAL PENGAJARAN
+   Minggu 1: Pengenalan bahasa Arab al-Quran
+   Minggu 2-4: Analisis surah Al-Fatihah
+   Minggu 5-7: Analisis surah An-Nas hingga Al-Falaq
+   Minggu 8: Ujian Pertengahan
+   Minggu 9-12: Analisis surah Al-Ikhlas hingga Al-Masad
+   Minggu 13: Pembentangan projek
+   Minggu 14: Peperiksaan Akhir
+
+4. POLISI KURSUS
+   - Kehadiran wajib 80%
+   - Penyerahan tugasan lewat: potongan 10%/hari
+   - Integriti akademik: plagiarisme akan diambil tindakan
+   - Komunikasi melalui portal e-pembelajaran universiti
+
+5. SUMBER PEMBELAJARAN
+   - Buku teks utama: Al-Mu'kizat fi Balaghat al-Quran
+   - Portal e-pembelajaran: lms.universiti.edu.my/bak3133
+   - Perpustakaan Digital Bahasa Arab: arabiclib.universiti.edu.my
+      `;
+      
+      document.getElementById('generatorResult').textContent = result;
+    }
+    
+    // Fungsi untuk mencetak garis panduan
+    function printGuideline() {
+      const guideline = document.getElementById('generatorResult').textContent;
+      if (guideline.trim() === "Hasil garis panduan akan muncul di sini...") {
+        alert("Sila hasilkan garis panduan terlebih dahulu!");
+        return;
+      }
+      
+      const printWindow = window.open('', '_blank');
+      printWindow.document.write(`
+        <html>
+          <head>
+            <title>Garis Panduan Kursus</title>
+            <style>
+              body { font-family: Arial, sans-serif; line-height: 1.6; margin: 2cm; }
+              h1 { text-align: center; color: #005fa3; }
+              pre { white-space: pre-wrap; font-size: 14px; }
+            </style>
+          </head>
+          <body>
+            <h1>Garis Panduan Kursus</h1>
+            <pre>${guideline}</pre>
+            <script>
+              window.onload = function() {
+                window.print();
+                setTimeout(function() { window.close(); }, 1000);
+              }
+            <\/script>
+          </body>
+        </html>
+      `);
+      printWindow.document.close();
+    }
+    
+    // Buka section pertama secara automatik
+    window.onload = function() {
+      document.getElementById('maklumat').classList.add('expanded');
+      document.querySelector('h2').classList.add('active');
+    };
   </script>
 </body>
 </html>
